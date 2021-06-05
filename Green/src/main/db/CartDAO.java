@@ -214,7 +214,7 @@ public class CartDAO {
 //		언제 findAmountById메소드가 실행되냐면 장바구니에 담을 때
 //		장바구니에 데이터를 넣기 전에 amount를 조회하기 위해 이 메소드를 실행하는데
 //		최초로 들어오게 될 경우 amount는 0이고
-//		이미 넣었던 경우 현재 amount를 return 위에 if문 처음 장바구니에 넣는 부분을 잘 보자.
+//		이미 넣었던 경우 현재 amount를 return 위에 if문 처음 장바구니에 넣는 부분을 확인.
 		return amount;
 	}
 

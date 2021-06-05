@@ -263,7 +263,7 @@ public class Frame extends JFrame implements ListSelectionListener {
 //				알림창에 나오는 버튼 2개
 				Object[] options = { "주문", "취소" };
 //				알림창에 나올 내용
-				String content = "주문하시겟슴꽈?";
+				String content = "주문하시겠습니까?";
 
 //				상품의 갯수만큼 for문을 돌면서 가격*양 의 합계 계산
 				int sum = 0;
@@ -272,7 +272,7 @@ public class Frame extends JFrame implements ListSelectionListener {
 				}
 
 //				String 끼리 더해서 알림창의 내용을 더할 수 있음.
-				content = content + "\n" + Integer.toString(sum);
+				content = content + "\n" + Integer.toString(sum)+"원";
 
 //				알림창 띄우기
 				int n = JOptionPane.showOptionDialog(null, content, "주문하기", JOptionPane.YES_NO_OPTION,

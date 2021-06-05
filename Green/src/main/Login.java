@@ -132,7 +132,7 @@ public class Login extends JFrame implements KeyListener {
 //			입력받은 패스워드는 p
 			String p = new String(txtPw.getPassword());
 
-//			pw는 실제 비밀번호, p는 입력받은 비밀번호 같으면 sucLogin().
+//			pw는 실제 비밀번호, p는 입력받은 비밀번호 pw 와 p 가 같으면 sucLogin().
 			if(pw.equals(p)) {
 				sucLogin();
 			}
