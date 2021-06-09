@@ -1,10 +1,19 @@
 package main;
 
+import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import main.db.MemberDAO;
 import main.db.MemberDTO;
 
-public class Main {
+
+public class Main extends JFrame{
 	
+
 	public Home home;
 	public Login login;
 	public SignUp signUp;
@@ -12,6 +21,8 @@ public class Main {
 	public MemberDAO memberDAO;
 	
 	public MemberDTO curMember;
+	
+	
 	
 
 	public static void main(String[] args) {
