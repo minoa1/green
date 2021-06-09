@@ -58,14 +58,14 @@ public class Home extends JFrame {
 		panel.setLayout(null);
 		panel.setBounds(0, 0, 584, 499);
 		
-		ImagePanel panel = new ImagePanel(new ImageIcon("./image/image2.png").getImage());
+		ImagePanel panel = new ImagePanel(new ImageIcon("./image/home.png").getImage());
 		frame.add(panel);
 		frame.pack();
 		
 		getContentPane().add(panel);
 
 //		JLabel
-		lblTitle = new JLabel("배달의 민족");
+		lblTitle = new JLabel("");
 		lblTitle.setFont(new Font("���� ���", Font.PLAIN, 24));
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setBounds(40, 75, 477, 79);
@@ -74,7 +74,9 @@ public class Home extends JFrame {
 		
 
 //		회원가입 버튼
-		signUpBtn = new JButton("회원가입");
+		signUpBtn = new JButton("");
+		signUpBtn.setIcon(new ImageIcon("C:\\Users\\me\\image\\signup.png"));
+		signUpBtn.setSelectedIcon(new ImageIcon("C:\\Users\\me\\image\\signup.png"));
 
 		signUpBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -84,11 +86,13 @@ public class Home extends JFrame {
 			}
 		});
 
-		signUpBtn.setBounds(59, 300, 200, 85);
+		signUpBtn.setBounds(60, 300, 200, 150);
 		panel.add(signUpBtn);
 
 //		로그인 버튼
-		loginBtn = new JButton("로그인");
+		loginBtn = new JButton("");
+		loginBtn.setIcon(new ImageIcon("C:\\Users\\me\\image\\Login.png"));
+		loginBtn.setSelectedIcon(new ImageIcon("C:\\Users\\me\\image\\Login.png"));
 		loginBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.login = new Login();
@@ -96,7 +100,7 @@ public class Home extends JFrame {
 			}
 		});
 
-		loginBtn.setBounds(320, 300, 200, 85);
+		loginBtn.setBounds(320, 300, 200, 150);
 		panel.add(loginBtn);
 
 		setVisible(true);

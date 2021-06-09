@@ -1,11 +1,15 @@
 package main;
 
-import java.awt.Color;
+
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,10 +22,29 @@ import javax.swing.event.ListSelectionListener;
 import main.db.CartDAO;
 import main.db.ProductDAO;
 
+
+//class ImagePanel extends JPanel{
+//	private Image img;
+//	
+//	public ImagePanel(Image img) {
+//		this.img = img;
+//		setSize(new Dimension(img.getWidth(null),img.getHeight(null)));
+//		setPreferredSize(new Dimension(img.getWidth(null),img.getHeight(null)));
+//		setLayout(null);
+//	}
+//	
+//	public void paintComponent(Graphics g) {
+//		g.drawImage(img, 0, 0, null);
+//	}
+//}
+
 public class Frame extends JFrame implements ListSelectionListener {
 
 	public Main main;
-
+	
+	
+	
+	
 	private ProductDAO productDAO = new ProductDAO();
 	private CartDAO cartDAO = new CartDAO();
 
@@ -72,35 +95,43 @@ public class Frame extends JFrame implements ListSelectionListener {
 	int checkProductIdx = 0;
 
 	public Frame() {
+	
+		JFrame frame = new JFrame("Frame");
 //		JFrame
-		getContentPane().setBackground(Color.PINK);
+		
 		setTitle("배달의 민족 홈");
 		setSize(419, 420);
 		setLocation(300, 150);
-		getContentPane().setLayout(null);
+		getContentPane().setLayout(null);	
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 //		JPanel
+//		ImagePanel panel = new ImagePanel(new ImageIcon("./image/Frame.png").getImage());
+//		frame.add(panel);
+//		frame.pack();
+		
+		
 		top = new JPanel();
-		top.setBackground(Color.CYAN);
+		
 		top.setBounds(0, 0, 400, 50);
 		getContentPane().add(top);
 
 		center = new JPanel();
-		center.setBackground(Color.CYAN);
+		
 		center.setBounds(0, 50, 400, 279);
 		center.setLayout(null);
 		getContentPane().add(center);
 
 		list = new JPanel();
-		list.setBackground(Color.CYAN);
+		
 		list.setBounds(0, 50, 400, 279);
 		getContentPane().add(list);
 		list.setLayout(null);
 		list.setVisible(false);
 
 		cart = new JPanel();
-		cart.setBackground(Color.CYAN);
+		
 		cart.setBounds(0, 50, 400, 279);
 		getContentPane().add(cart);
 		cart.setLayout(null);
@@ -123,7 +154,7 @@ public class Frame extends JFrame implements ListSelectionListener {
 		cart.add(btnList);
 
 		bottom = new JPanel();
-		bottom.setBackground(Color.CYAN);
+		
 		bottom.setBounds(0, 329, 400, 50);
 		getContentPane().add(bottom);
 		bottom.setVisible(false);
@@ -161,29 +192,45 @@ public class Frame extends JFrame implements ListSelectionListener {
 		top.add(logoutBtn);
 
 //		Center panel
-		category1 = new JButton("한식");
+		category1 = new JButton("");
+		category1.setIcon(new ImageIcon("C:\\Users\\me\\image\\한식.png"));
+		category1.setSelectedIcon(new ImageIcon("C:\\Users\\me\\image\\한식.png"));
 		category1.setBounds(0, 67, 100, 100);
 
-		category2 = new JButton("중식");
+		category2 = new JButton("");
+		category2.setIcon(new ImageIcon("C:\\Users\\me\\image\\중국집.png"));
+		category2.setSelectedIcon(new ImageIcon("C:\\Users\\me\\image\\중국집.png"));
 		category2.setBounds(102, 67, 100, 100);
 
-		category3 = new JButton("치킨");
+		category3 = new JButton("");
+		category3.setIcon(new ImageIcon("C:\\Users\\me\\image\\치킨.png"));
+		category3.setSelectedIcon(new ImageIcon("C:\\Users\\me\\image\\치킨.png"));
 		category3.setBounds(202, 67, 100, 100);
 
-		category4 = new JButton("피자");
+		category4 = new JButton("");
+		category4.setIcon(new ImageIcon("C:\\Users\\me\\image\\피자.png"));
+		category4.setSelectedIcon(new ImageIcon("C:\\Users\\me\\image\\피자.png"));
 		category4.setBounds(302, 67, 100, 100);
 
-		category5 = new JButton("일식");
-		category5.setBounds(0, 176, 100, 100);
+		category5 = new JButton("");
+		category5.setIcon(new ImageIcon("C:\\Users\\me\\image\\일식.png"));
+		category5.setSelectedIcon(new ImageIcon("C:\\Users\\me\\image\\일식.png"));
+		category5.setBounds(0, 169, 100, 100);
 
-		category6 = new JButton("족발보쌈");
-		category6.setBounds(102, 177, 100, 100);
+		category6 = new JButton("");
+		category6.setIcon(new ImageIcon("C:\\Users\\me\\image\\족발.보쌈.png"));
+		category6.setSelectedIcon(new ImageIcon("C:\\Users\\me\\image\\족발.보쌈.png"));
+		category6.setBounds(102, 169, 100, 100);
 
-		category7 = new JButton("찜,탕");
-		category7.setBounds(202, 176, 100, 100);
+		category7 = new JButton("");
+		category7.setIcon(new ImageIcon("C:\\Users\\me\\image\\찜.탕.png"));
+		category7.setSelectedIcon(new ImageIcon("C:\\Users\\me\\image\\찜.탕.png"));
+		category7.setBounds(202, 169, 100, 100);
 
-		category8 = new JButton("패스트푸드");
-		category8.setBounds(302, 176, 100, 100);
+		category8 = new JButton("");
+		category8.setIcon(new ImageIcon("C:\\Users\\me\\image\\패스트푸드.png"));
+		category8.setSelectedIcon(new ImageIcon("C:\\Users\\me\\image\\패스트푸드.png"));
+		category8.setBounds(302, 169, 100, 100);
 
 //		8개의 버튼에 대해서 하나의 Listener로 처리.(간단하게 하기 위해서)
 //		inner Class로 Listener 구현
@@ -448,14 +495,14 @@ public class Frame extends JFrame implements ListSelectionListener {
 				store3.setText("볶음밥");
 //				System.out.println("중식");
 			} else if (e.getSource() == category3) {
-				store1.setText("A치킨");
-				store2.setText("B치킨");
-				store3.setText("C치킨");
+				store1.setText("굽네치킨");
+				store2.setText("BBQ치킨");
+				store3.setText("교촌치킨");
 //				System.out.println("치킨");
 			} else if (e.getSource() == category4) {
-				store1.setText("A피자");
-				store2.setText("B피자");
-				store3.setText("C피자");
+				store1.setText("피자스쿨");
+				store2.setText("미스터피자");
+				store3.setText("도미노피자");
 //				System.out.println("피자");
 			} else if (e.getSource() == category5) {
 				store1.setText("참치초밥");
@@ -473,9 +520,9 @@ public class Frame extends JFrame implements ListSelectionListener {
 				store3.setText("뼈찜");
 //				System.out.println("찜,탕");
 			} else {
-				store1.setText("A세트");
-				store2.setText("B세트");
-				store3.setText("C세트");
+				store1.setText("롯데리아");
+				store2.setText("맥도날드");
+				store3.setText("버거킹");
 //				System.out.println("패스트푸드");
 			}
 		}
