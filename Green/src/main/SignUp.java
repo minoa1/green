@@ -1,11 +1,16 @@
 package main;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,6 +21,23 @@ import javax.swing.JTextField;
 
 import main.db.MemberDAO;
 import main.db.MemberDTO;
+
+/*
+class ImagePanel2 extends JPanel{
+	private Image img;
+	
+	public ImagePanel2(Image img) {
+		this.img = img;
+		setSize(new Dimension(img.getWidth(null),img.getHeight(null)));
+		setPreferredSize(new Dimension(img.getWidth(null),img.getHeight(null)));
+		setLayout(null);
+	}
+	
+	public void paintComponent(Graphics g) {
+		g.drawImage(img, 0, 0, null);
+	}
+}
+*/
 
 public class SignUp extends JFrame implements KeyListener {
 	
@@ -37,26 +59,41 @@ public class SignUp extends JFrame implements KeyListener {
 	JButton cancleBtn;
 	
 	public SignUp() {
+		JFrame  frame2 = new JFrame("signup");
 //		JFrame
 		setTitle("회원가입");
-		setSize(300, 150);
-		setLocation(400,200);
+		setSize(421, 276);
+		setLocation(450,300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 //		JPanel
 		panel = new JPanel();
-		panel.setLayout(new GridLayout(0, 2));
+		ImagePanel panel = new ImagePanel(new ImageIcon("./image/backgro.png").getImage());
+		frame2.add(panel);
+		frame2.pack();
 		getContentPane().add(panel);
 
 //		JLabel
-		lblEmail = new JLabel("Email");
-		lblPw = new JLabel("PW");
-		lblName = new JLabel("NAME");
+		lblEmail = new JLabel("이메일");
+		lblEmail.setHorizontalAlignment(JLabel.CENTER);
+		lblEmail.setForeground(Color.white);
+		lblEmail.setBounds(0, 0, 204, 60);
+		lblPw = new JLabel("비밀번호");
+		lblPw.setHorizontalAlignment(JLabel.CENTER);
+		lblPw.setForeground(Color.white);
+		lblPw.setBounds(0, 60, 204, 60);
+		lblName = new JLabel("이름");
+		lblName.setHorizontalAlignment(JLabel.CENTER);
+		lblName.setForeground(Color.white);
+		lblName.setBounds(0, 120, 204, 60);
 
 //		JTextField & JPasswordField
 		txtEmail = new JTextField(10);
+		txtEmail.setBounds(204, 0, 204, 60);
 		txtPw = new JPasswordField();
+		txtPw.setBounds(204, 60, 204, 60);
 		txtName = new JTextField(10);
+		txtName.setBounds(204, 120, 204, 60);
 		
 //		Enter key를 통한 회원가입을 위해 Key Listener 등록.
 		txtEmail.addKeyListener(this);
@@ -65,6 +102,9 @@ public class SignUp extends JFrame implements KeyListener {
 		
 //		회원가입 버튼
 		signUpBtn = new JButton("회원가입");
+		signUpBtn.setForeground(Color.white);
+		signUpBtn.setBackground(new java.awt.Color(42,193,188));
+		signUpBtn.setBounds(0, 180, 204, 60);
 		signUpBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				signUp();
@@ -73,11 +113,15 @@ public class SignUp extends JFrame implements KeyListener {
 		
 //		취소 버튼 : 회원가입 창을 닫는다.
 		cancleBtn = new JButton("취소");
+		cancleBtn.setForeground(Color.white);
+		cancleBtn.setBackground(new java.awt.Color(42,193,188));
+		cancleBtn.setBounds(204, 180, 204, 60);
 		cancleBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
+		panel.setLayout(null);
 
 //		JPanel에 컴포넌트 추가. (컴포넌트 : 구성요소)
 		panel.add(lblEmail);
@@ -103,6 +147,12 @@ public class SignUp extends JFrame implements KeyListener {
 			JOptionPane.showMessageDialog(null, "빈칸이 존재합니다.");
 		}
 		else {
+			int check = memberDAO.memberCheck(txtEmail.getText());
+			
+			if(check == 1) {
+				JOptionPane.showMessageDialog(null,"사용할 수 없는 이메일입니다.");
+			}else {
+//			if(txtEmail.getText().equals())
 //			Member를 담을 DTO를 하나만든다
 			MemberDTO member = new MemberDTO();
 			
@@ -118,6 +168,7 @@ public class SignUp extends JFrame implements KeyListener {
 
 			JOptionPane.showMessageDialog(null, "회원가입 되었습니다.");
 			dispose();
+			}
 		}
 	}
 	

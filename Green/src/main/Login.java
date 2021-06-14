@@ -1,10 +1,15 @@
 package main;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,6 +19,25 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import main.db.MemberDAO;
+
+
+/*
+class ImagePanel extends JPanel{
+	private Image img;
+	
+	public ImagePanel(Image img) {
+		this.img = img;
+		setSize(new Dimension(img.getWidth(null),img.getHeight(null)));
+		setPreferredSize(new Dimension(img.getWidth(null),img.getHeight(null)));
+		setLayout(null);
+	}
+	
+	public void paintComponent(Graphics g) {
+		g.drawImage(img, 0, 0, null);
+	}
+}
+*/
+
 
 public class Login extends JFrame implements KeyListener {
 	
@@ -36,24 +60,33 @@ public class Login extends JFrame implements KeyListener {
 	
 
 	public Login() {
+		JFrame  frame1 = new JFrame("login");
 //		JFrame
-		setTitle("login");
-		setSize(280, 150);
+		setTitle("로그인 화면");
+		setSize(288, 147);
 		setResizable(false);
-		setLocation(600, 250);
+		setLocation(520, 380);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 //		JPanel
 		panel = new JPanel();
 		panel.setLayout(null);
+		ImagePanel panel = new ImagePanel(new ImageIcon("./image/backgro.png").getImage());
+		frame1.add(panel);
+		frame1.pack();
 		getContentPane().add(panel);
 		
+		
 //		JLabel
-		lblEmail = new JLabel("User");
+		lblEmail = new JLabel("이메일");
+		lblEmail.setHorizontalAlignment(JLabel.CENTER);
+		lblEmail.setForeground(Color.white);
 		lblEmail.setBounds(10, 10, 80, 25);
 		panel.add(lblEmail);
 
-		lblPw = new JLabel("Password");
+		lblPw = new JLabel("비밀번호");
+		lblPw.setHorizontalAlignment(JLabel.CENTER);
+		lblPw.setForeground(Color.white);
 		lblPw.setBounds(10, 40, 80, 25);
 		panel.add(lblPw);
 
@@ -70,7 +103,9 @@ public class Login extends JFrame implements KeyListener {
 		
 //		회원가입으로 가는 버튼 : 회원가입 화면을 켜주고 현재창인 로그인 화면은 닫는다.
 		signUpBtn = new JButton("회원가입");
-		signUpBtn.setBounds(0, 75, 100, 25);
+		signUpBtn.setBackground(new java.awt.Color(42,193,188));
+		signUpBtn.setForeground(Color.white);
+		signUpBtn.setBounds(1, 75, 90, 25);
 		signUpBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.signUp = new SignUp();
@@ -81,7 +116,9 @@ public class Login extends JFrame implements KeyListener {
 		
 //		취소 버튼 : 현재창인 로그인 화면을 닫는다.
 		cancleBtn = new JButton("취소");
-		cancleBtn.setBounds(100, 75, 80, 25);
+		cancleBtn.setBackground(new java.awt.Color(42,193,188));
+		cancleBtn.setForeground(Color.white);
+		cancleBtn.setBounds(90, 75, 90, 25);
 		cancleBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -90,7 +127,9 @@ public class Login extends JFrame implements KeyListener {
 
 //		로그인 버튼
 		loginBtn = new JButton("로그인");
-		loginBtn.setBounds(174, 75, 100, 25);
+		loginBtn.setBackground(new java.awt.Color(42,193,188));
+		loginBtn.setForeground(Color.white);
+		loginBtn.setBounds(180, 75, 90, 25);
 		loginBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				processLogin();

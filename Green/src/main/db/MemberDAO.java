@@ -20,7 +20,8 @@ public class MemberDAO {
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
-
+	
+	
 //	DB기본 설정.
 	public MemberDAO() {
 		try {
@@ -32,7 +33,38 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+		public int memberCheck(String email) {
+		      int ret = 0;
+		      getConnection();
+		      String sql = "select * from members where email = ?";
 
+		      try {
+		         pstmt = conn.prepareStatement(sql);         
+		         pstmt.setString(1, email);
+
+//		         쿼리문에 인자넣어서 실행
+//		         정상적으로 실행되면 ret는 1
+//		         실패하면 ret는 0
+		         ret = pstmt.executeUpdate();
+
+		      } catch (SQLException e) {
+		         e.printStackTrace();
+		      } finally {
+		         try {
+		            if (pstmt != null)
+		               pstmt.close();
+		            if (conn != null)
+		               conn.close();
+		         } catch (SQLException e) {
+		            e.printStackTrace();
+		         }
+		      }
+		      return ret;
+		   }
+	
 //	DB는 연결해서 처리(데이터를 넣는거나 바꾸는거나 지우는거나 뭐든)를 하고나서 다시 연결을 해제해줘야함.
 //	그래서 DAO 클래스의 모든 메소드들은 항상 첫 부분에 getConnection()이 있고, 끝 부분 try catch 안에 rs, pstmt, conn 이런 애들을 .close()로 연결해제
 	public void getConnection() {
@@ -77,7 +109,8 @@ public class MemberDAO {
 			}
 		}
 	}
-
+	
+		
 	
 //	Login.java에서 Login할 때 입력받은 Email을 인자로 받아서 해당 Email의 PW를 return 해주는 메소드
 //	추가적으로 Main.java의 curMember 설정을 해준다.

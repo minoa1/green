@@ -1,5 +1,6 @@
 package main;
 
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -13,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
 
 
 class ImagePanel extends JPanel{
@@ -48,7 +50,7 @@ public class Home extends JFrame {
 		getContentPane().setLayout(null);
 		setTitle("홈 화면");
 		setSize(600, 600);
-		setLocation(400, 150);
+		setLocation(350, 180);
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -77,7 +79,6 @@ public class Home extends JFrame {
 		signUpBtn = new JButton("");
 		signUpBtn.setIcon(new ImageIcon("C:\\Users\\me\\image\\signup.png"));
 		signUpBtn.setSelectedIcon(new ImageIcon("C:\\Users\\me\\image\\signup.png"));
-
 		signUpBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.signUp = new SignUp();
