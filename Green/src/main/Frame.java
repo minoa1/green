@@ -1,11 +1,8 @@
 package main;
 
-
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -18,51 +15,31 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-
 import main.db.CartDAO;
 import main.db.ProductDAO;
-import java.awt.Font;
-import javax.swing.ListSelectionModel;
-
-
-
 
 public class Frame extends JFrame implements ListSelectionListener {
 
 	public Main main;
-	
-	
-	
-	
+
 	private ProductDAO productDAO = new ProductDAO();
 	private CartDAO cartDAO = new CartDAO();
 
-	
 	ImagePanel top;
 	ImagePanel center;
 	ImagePanel list;
 	ImagePanel cart;
 	ImagePanel bottom;
-	
-	/*
-	JPanel top;
-
-	JPanel center;
-	JPanel list;
-	JPanel cart;
-
-	JPanel bottom;
-	*/
 
 	JPanel productList;
 	JPanel priceList;
 	JPanel amountList;
 	JPanel btnList;
-	
-	
+
 	JLabel lblMemberName;
 	JButton cartBtn;
 	JButton logoutBtn;
@@ -95,22 +72,21 @@ public class Frame extends JFrame implements ListSelectionListener {
 	JButton backBtn;
 
 	int checkProductIdx = 0;
-	
+
 	public Frame() {
-	
+
 		JFrame frame = new JFrame("Frame");
 //		JFrame
-		
+
 		setTitle("배달의 민족 홈");
 		setSize(419, 420);
 		setLocation(450, 280);
-		getContentPane().setLayout(null);	
-		
+		getContentPane().setLayout(null);
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 //		JPanel
-	
-		
+
 //		top = new JPanel();
 		top = new ImagePanel(new ImageIcon("./image/top.png").getImage());
 		top.setBounds(0, 0, 400, 32);
@@ -119,7 +95,7 @@ public class Frame extends JFrame implements ListSelectionListener {
 //		center = new JPanel();
 		center = new ImagePanel(new ImageIcon("./image/center.png").getImage());
 		center.setBounds(0, 30, 400, 299);
-		center.setLayout(null); 
+		center.setLayout(null);
 		getContentPane().add(center);
 
 //		list = new JPanel();		
@@ -138,22 +114,22 @@ public class Frame extends JFrame implements ListSelectionListener {
 
 		productList = new JPanel();
 		productList.setBounds(0, 0, 133, 270);
-		productList.setBackground(new java.awt.Color(42,193,188));
+		productList.setBackground(new java.awt.Color(42, 193, 188));
 		cart.add(productList);
 
 		priceList = new JPanel();
 		priceList.setBounds(133, 0, 133, 270);
-		priceList.setBackground(new java.awt.Color(42,193,188));
+		priceList.setBackground(new java.awt.Color(42, 193, 188));
 		cart.add(priceList);
 
 		amountList = new JPanel();
 		amountList.setBounds(266, 0, 134, 270);
-		amountList.setBackground(new java.awt.Color(42,193,188));
+		amountList.setBackground(new java.awt.Color(42, 193, 188));
 		cart.add(amountList);
 
 		btnList = new JPanel();
 		btnList.setBounds(0, 270, 400, 29);
-		btnList.setBackground(new java.awt.Color(42,193,188));
+		btnList.setBackground(new java.awt.Color(42, 193, 188));
 		cart.add(btnList);
 
 //		bottom = new JPanel();
@@ -161,19 +137,16 @@ public class Frame extends JFrame implements ListSelectionListener {
 		bottom.setBounds(0, 329, 400, 50);
 		getContentPane().add(bottom);
 		top.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-
 
 //		Top panel
 		lblMemberName = new JLabel("Member Name");
 		lblMemberName.setBounds(131, 0, 171, 15);
 
-
 		top.add(lblMemberName);
 
 //		장바구니 버튼 : center, list panel은 숨기고  cart, bottom panel은 보인다.
 		cartBtn = new JButton("장바구니");
-		cartBtn.setBackground(new java.awt.Color(42,193,188));
+		cartBtn.setBackground(new java.awt.Color(42, 193, 188));
 		cartBtn.setForeground(Color.white);
 		cartBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -182,16 +155,14 @@ public class Frame extends JFrame implements ListSelectionListener {
 				cart.setVisible(true);
 				backBtn.setVisible(true);
 
-
 			}
 		});
 
 		top.add(cartBtn);
 
-
 //		로그아웃 버튼 : 현재 창을 닫고 home 화면 실행.
 		logoutBtn = new JButton("로그아웃");
-		logoutBtn.setBackground(new java.awt.Color(42,193,188));
+		logoutBtn.setBackground(new java.awt.Color(42, 193, 188));
 		logoutBtn.setForeground(Color.white);
 		logoutBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -302,22 +273,19 @@ public class Frame extends JFrame implements ListSelectionListener {
 		product_model = new DefaultListModel();
 		product_list = new JList(product_model);
 		product_list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		product_list.setFont(new Font("굴림", Font.PLAIN, 20));
-		product_list.setBackground((new java.awt.Color(42,193,188)));
-		
-		
-		
+		product_list.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		product_list.setBackground((new java.awt.Color(42, 193, 188)));
+
 //		JListSelectionListener추가
 		product_list.addListSelectionListener(this);
 		productList.add(product_list);
-		
 
 //		price List
 		price_model = new DefaultListModel();
 		price_list = new JList(price_model);
 		price_list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		price_list.setFont(new Font("굴림", Font.PLAIN, 20));
-		price_list.setBackground((new java.awt.Color(42,193,188)));
+		price_list.setBackground((new java.awt.Color(42, 193, 188)));
 		priceList.add(price_list);
 
 //		amout List
@@ -325,12 +293,12 @@ public class Frame extends JFrame implements ListSelectionListener {
 		amount_list = new JList(amount_model);
 		amount_list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		amount_list.setFont(new Font("굴림", Font.PLAIN, 20));
-		amount_list.setBackground((new java.awt.Color(42,193,188)));
+		amount_list.setBackground((new java.awt.Color(42, 193, 188)));
 		amountList.add(amount_list);
 
 //		구매 버튼
 		buyBtn = new JButton("구매");
-		buyBtn.setBackground(new java.awt.Color(42,193,188));
+		buyBtn.setBackground(new java.awt.Color(42, 193, 188));
 		buyBtn.setForeground(Color.white);
 		buyBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -346,7 +314,7 @@ public class Frame extends JFrame implements ListSelectionListener {
 				}
 
 //				String 끼리 더해서 알림창의 내용을 더할 수 있음.
-				content = content + "\n" + Integer.toString(sum)+"원";
+				content = content + "\n" + Integer.toString(sum) + "원";
 
 //				알림창 띄우기
 				int n = JOptionPane.showOptionDialog(null, content, "주문하기", JOptionPane.YES_NO_OPTION,
@@ -375,7 +343,7 @@ public class Frame extends JFrame implements ListSelectionListener {
 
 //		삭제 버튼
 		delBtn = new JButton("삭제");
-		delBtn.setBackground(new java.awt.Color(42,193,188));
+		delBtn.setBackground(new java.awt.Color(42, 193, 188));
 		delBtn.setForeground(Color.white);
 		delBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -383,15 +351,14 @@ public class Frame extends JFrame implements ListSelectionListener {
 				int p_id = productDAO.findIDByName((String) product_model.get(checkProductIdx));
 //				Amount JList에 해당 상품의 amount를 curAmount에 저장.
 				int curAmount = (int) amount_model.get(checkProductIdx);
-				
-				
-				Object[] options = { "네","아니오" };
+
+				Object[] options = { "네", "아니오" };
 				String content = "주문을 취소하시겠습니까?";
 				content = content;
-				
+
 				int n = JOptionPane.showOptionDialog(null, content, "주문 취소", JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-				
+
 				if (n == 0) {
 //					삭제되었다고 알림창을 띄운다.
 					JOptionPane.showMessageDialog(null, "주문이 취소되었습니다.");
@@ -414,34 +381,14 @@ public class Frame extends JFrame implements ListSelectionListener {
 //						화면에 보이는 JList의 amount_model만 1깎은 것을 적용 (product, price는 그대로)
 						amount_model.set(checkProductIdx, curAmount);
 					}
-					
+
 				}
 //				알림창에서 아니오를 눌렀을 경우
 				else {
 
 				}
-////		    	amount가 1이라면
-//				if (curAmount == 1) {
-////					해당 상품을 DB에서 지운다.
-//					cartDAO.cartDeleteProduct(main.curMember.getId(), p_id);
-//
-////					화면에 보이는 JList에서 해당 상품과 같은 index들의 product, price, amount만 지운다.
-//					product_model.remove(checkProductIdx);
-//					price_model.remove(checkProductIdx);
-//					amount_model.remove(checkProductIdx);
-//				}
-////				amount가 1이상일 때
-//				else {
-////					amount를 1깎아서, DB에 update 해준다.
-//					curAmount -= 1;
-//					cartDAO.cartUpdate(main.curMember.getId(), p_id, curAmount);
-//
-////					화면에 보이는 JList의 amount_model만 1깎은 것을 적용 (product, price는 그대로)
-//					amount_model.set(checkProductIdx, curAmount);
-//				}
-//				
-				
-				
+////		    	
+
 			}
 		});
 
@@ -450,7 +397,7 @@ public class Frame extends JFrame implements ListSelectionListener {
 //		Bottom panel 
 //		뒤로가기 버튼
 		backBtn = new JButton("이전으로");
-		backBtn.setBackground(new java.awt.Color(42,193,188));
+		backBtn.setBackground(new java.awt.Color(42, 193, 188));
 		backBtn.setForeground(Color.white);
 		backBtn.setVisible(false);
 		backBtn.addActionListener(new ActionListener() {
@@ -465,14 +412,9 @@ public class Frame extends JFrame implements ListSelectionListener {
 		bottom.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		bottom.add(backBtn);
-		
-		
-		
 
 		setVisible(true);
 	}
-
-
 
 //	이 화면에서는 setMain()이 단순히 main만 설정해주는 것이 아니고 현재 접속한 member의 장바구니를 DB에서 가져오는 과정 필요
 	public void setMain(Main main) {
@@ -555,9 +497,7 @@ public class Frame extends JFrame implements ListSelectionListener {
 			cart.setVisible(false);
 			backBtn.setVisible(true);
 
-//			store.setText("A"+e.getActionCommand());
-//			store2.setText("B"+e.getActionCommand());
-//			store3.setText("C"+e.getActionCommand());
+
 
 //			8개의 버튼 중 어느 버튼이 눌렸는지 체크해서 store 버튼들의 이름을 붙혀준다.
 //			DB의 products 테이블의 name과 같아야함
